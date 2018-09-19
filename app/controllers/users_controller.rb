@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-
+    erb :'/users/login'
   end
 
   post '/login' do
@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    
+    sessions.clear
+    redirect '/login'
   end
 
 end
