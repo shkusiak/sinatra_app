@@ -20,6 +20,7 @@ class ShoesController < ApplicationController
     if !logged_in?
       redirect to '/login'
     else
+      @shoe = Shoe.find_by_id(params[:id])
       erb :'/shoes/show_shoe'
     end
   end
@@ -28,12 +29,31 @@ class ShoesController < ApplicationController
     if !logged_in?
       redirect to '/login'
     else
-      erb :'/shoes/edit_shoe'
+      @shoe = Shoe.find_by_id(params[:id])
+      if @shoe && @shoe.user == current_user
+        erb :'/shoes/edit_shoe'
+      else
+        redirect to '/shoes'
+      end
     end
   end
 
   post '/shoes' do
-
+    if !logged_in?
+      redirect to '/login'
+    else
+      if params[:name] == ""
+        redirect to '/shoes/new'
+      else
+        binding.pry
+        @shoe = current_user.shoes.build(name: params[:name], manufacturer: params[:manufacturer], description: params[:description], color: params[:color], cost: params[:cost])
+        if @shoe.save
+          redirect to "/shoes/#{@shoe.id}"
+        else
+          redirect to "/shoes/new"
+        end
+      end
+    end
   end
 
   patch '/shoes/:id' do
