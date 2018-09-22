@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
 
   get '/signup' do
-    erb :'/users/create_user'
+    if session[:user_id]
+      redirect to '/shoes'
+    else
+      erb :'/users/create_user'
+    end
   end
 
   post '/signup' do
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
       redirect to '/signup'
-    # elsif user_exists?
-    #   redirect to '/login'
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
@@ -18,12 +20,17 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    erb :'/users/login'
+    if session[:user_id]
+      redirect to '/shoes'
+    else
+      erb :'/users/login'
+    end
   end
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    if !!@user
+    if !!@user && !!@user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect to '/shoes'
     else
       redirect to "/signup"
