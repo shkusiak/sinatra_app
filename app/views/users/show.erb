@@ -1,0 +1,5 @@
+<p> Welcome <%= @user.username %>, here are your shoes:</p>
+
+<% @user.shoes.each do |shoe| %>
+<p><%= shoe.content %></p>
+<% end %>
