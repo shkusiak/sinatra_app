@@ -1,3 +1,3 @@
-class CreateShoe < ActiveRecord::Base
-  belongs_to :users
+class Shoe < ActiveRecord::Base
+  belongs_to :user
 end
