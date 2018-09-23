@@ -45,7 +45,6 @@ class ShoesController < ApplicationController
       if params[:name] == ""
         redirect to '/shoes/new'
       else
-        binding.pry
         @shoe = current_user.shoes.build(name: params[:name], manufacturer: params[:manufacturer], description: params[:description], color: params[:color], cost: params[:cost])
         if @shoe.save
           redirect to "/shoes/#{@shoe.id}"

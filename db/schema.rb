@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180831001347) do
     t.string  "description"
     t.integer "cost"
     t.string  "color"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

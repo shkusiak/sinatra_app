@@ -6,6 +6,7 @@ class CreateShoes < ActiveRecord::Migration
       t.string :description
       t.integer :cost
       t.string :color
+      t.integer :user_id
     end
   end
 end
