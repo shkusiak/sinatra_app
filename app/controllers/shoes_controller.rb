@@ -78,7 +78,15 @@ class ShoesController < ApplicationController
   end
 
   delete '/shoes/:id/delete' do
-    
+    if logged_in?
+      @shoe = Shoe.find_by_id(params[:id])
+      if @shoe && @shoe.user == current_user
+        @shoe.delete
+      end
+      redirect to '/shoes'
+    else
+      redirect to '/login'
+    end
   end
 
 end
