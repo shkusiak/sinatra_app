@@ -1,1 +1,11 @@
-edit shoe in the form below...
+<h2>Edit Shoe Info Below:</h2>
+
+<form action="/shoes/<%=@shoe.id%>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <label>Name:</label><input type="text" name="name" value="<%=@shoe.name%>"><br>
+  <label>Manufacturer:</label><input type="text" name="manufacturer" value="<%=@shoe.manufacturer%>"><br>
+  <label>Description:</label><input type="text" name="description" value="<%=@shoe.description%>"><br>
+  <label>Color:</label><input type="text" name="color" value="<%=@shoe.color%>"><br>
+  <label>Cost</label><input type="text" name="cost" value="<%=@shoe.cost%>"><br>
+  <input type="submit" value="submit">
+</form>
