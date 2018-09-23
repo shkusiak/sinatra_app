@@ -57,11 +57,28 @@ class ShoesController < ApplicationController
   end
 
   patch '/shoes/:id' do
-
+    if logged_in?
+      if params[:name] == ""
+        redirect to "/shoes/#{params[:id]}/edit"
+      else
+        @shoe = Shoe.find_by_id(params[:id])
+        if @shoe && @shoe.user == current_user
+          if @shoe.update(name: params[:name])
+            redirect to "/shoes/#{@shoe.id}"
+          else
+            redirect to "/shoes/#{@shoe.id}/edit"
+          end
+        else
+          redirect to '/shoes'
+        end
+      end
+    else
+      redirect to '/login'
+    end
   end
 
   delete '/shoes/:id/delete' do
-
+    
   end
 
 end
