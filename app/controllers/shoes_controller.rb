@@ -4,6 +4,7 @@ class ShoesController < ApplicationController
     if !logged_in?
       redirect to '/login'
     else
+      @shoes = Shoe.all
       erb :'/shoes/shoes'
     end
   end
@@ -62,7 +63,7 @@ class ShoesController < ApplicationController
       else
         @shoe = Shoe.find_by_id(params[:id])
         if @shoe && @shoe.user == current_user
-          if @shoe.update(name: params[:name])
+          if @shoe.update(name: params[:name], manufacturer: params[:manufacturer], description: params[:description], color: params[:color], cost: params[:cost])
             redirect to "/shoes/#{@shoe.id}"
           else
             redirect to "/shoes/#{@shoe.id}/edit"
