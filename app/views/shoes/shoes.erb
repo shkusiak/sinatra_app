@@ -2,7 +2,7 @@
 <a href="/shoes/new">Add a shoe to the Collection</a>
 
 <% @shoes.each do |shoe| %>
-  <p><a href="/shoes/<%=shoe.id%>/edit"><%=shoe.name%></a> | <%=shoe.manufacturer%> | <%=shoe.cost%> <br>
+  <p><a href="/shoes/<%=shoe.id%>"><%=shoe.name%></a> | <%=shoe.manufacturer%> | $<%=shoe.cost%> <br>
     <%=shoe.description%> - <%=shoe.color%>
   </p>
 <% end %>
