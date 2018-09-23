@@ -1,1 +1,16 @@
-here is the shoe you want to view
+<h3><%=@shoe.name %></h3>
+
+<p><%=@shoe.manufacturer %><br>
+  <%=@shoe.description %><br>
+  <%=@shoe.color %><br>
+  <%=@shoe.cost %><br>
+  <%=@shoe.description %><br>
+  Posted by <%=@shoe.user_id %>
+</p>
+
+<a href="/shoes/<%=@shoe.id%>/edit">Edit Shoe Info</a><br><br>
+
+<form action="/shoes/<%=@shoe.id%>/delete" method="post">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Shoe">
+</form>
