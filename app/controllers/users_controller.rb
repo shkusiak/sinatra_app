@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
-      redirect to '/signup'
+      redirect to '/failure'
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
@@ -38,8 +38,12 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/shoes'
     else
-      redirect to "/signup"
+      redirect to '/failure'
     end
+  end
+
+  get '/failure' do
+    erb :'/users/failure'
   end
 
   get '/logout' do
