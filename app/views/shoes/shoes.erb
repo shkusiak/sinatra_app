@@ -2,8 +2,10 @@
 <a href="/shoes/new">Add a shoe to the Collection</a>
 
 <% @shoes.each do |shoe| %>
+  <% poster = User.find_by_id(shoe.user_id) %>
   <p><a href="/shoes/<%=shoe.id%>"><%=shoe.name%></a> | <%=shoe.manufacturer%> | $<%=shoe.cost%> <br>
-    <%=shoe.description%> - <%=shoe.color%>
+    <%=shoe.description%> - <%=shoe.color%><br>
+    Posted by: <%=poster.username%>
   </p>
 <% end %>
 
