@@ -5,7 +5,7 @@
   <% poster = User.find_by_id(shoe.user_id) %>
   <p><a href="/shoes/<%=shoe.id%>"><%=shoe.name%></a> | <%=shoe.manufacturer%> | $<%=shoe.cost%> <br>
     <%=shoe.description%> - <%=shoe.color%><br>
-    Posted by: <%=poster.username%>
+    Posted by: <a href="/users/<%=poster.slug%>"><%=poster.username%></a>
   </p>
 <% end %>
 
