@@ -1,5 +1,7 @@
-<p> Welcome <%= @user.username %>, here's your shoe collection:</p>
+<p>Here is <%=@user.username%>'s shoe collection:</p>
 
 <% @user.shoes.each do |shoe| %>
-<p><%= shoe. %></p>
+  <p><a href="/shoes/<%=shoe.id%>"><%=shoe.name%></a> | <%=shoe.manufacturer%> | $<%=shoe.cost%> <br>
+    <%=shoe.description%> - <%=shoe.color%><br>
+  </p>
 <% end %>
