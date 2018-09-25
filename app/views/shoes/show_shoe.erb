@@ -1,19 +1,20 @@
-<h3><%=@shoe.name %></h3>
+<h3></h3>
 
-<p><%=@shoe.manufacturer %><br>
-  <%=@shoe.description %><br>
-  <%=@shoe.color %><br>
-  $<%=@shoe.cost %><br>
+<p><%=@shoe.name %> | <%=@shoe.manufacturer %> | $<%=@shoe.cost %><br>
+  <%=@shoe.description %> - <%=@shoe.color %><br>
   Posted by <a href="/users/<%=@poster.slug%>"><%=@poster.username%></a>
 </p>
 
-<a href="/shoes/<%=@shoe.id%>/edit">Edit Shoe Info</a><br><br>
+<%if current_user.id == @poster.id%>
+  <a href="/shoes/<%=@shoe.id%>/edit">Edit Shoe Info</a><br><br>
 
-<form action="/shoes/<%=@shoe.id%>/delete" method="post">
-  <input type="hidden" id="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Shoe">
-</form>
+  <form action="/shoes/<%=@shoe.id%>/delete" method="post">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Shoe">
+  </form>
+  <br>
+<% end %>
 
-<a href="/shoes">Back to all shoes</a><br>
-
+<a href="/shoes">All shoes</a><br>
+<a href="/users/<%=current_user.slug%>">My shoes</a><br>
 <a href="/logout">Logout</a>
