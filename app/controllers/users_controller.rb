@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
   end
-  
+
   get '/signup' do
     if session[:user_id]
       redirect to '/shoes'
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    sessions.clear
+    session.clear
     redirect '/login'
   end
 
