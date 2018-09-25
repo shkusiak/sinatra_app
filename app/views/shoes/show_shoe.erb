@@ -4,7 +4,7 @@
   <%=@shoe.description %><br>
   <%=@shoe.color %><br>
   $<%=@shoe.cost %><br>
-  Posted by <%=@shoe.user_id %>
+  Posted by <a href="/users/<%=@poster.slug%>"><%=@poster.username%></a>
 </p>
 
 <a href="/shoes/<%=@shoe.id%>/edit">Edit Shoe Info</a><br><br>

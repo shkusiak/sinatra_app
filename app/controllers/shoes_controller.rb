@@ -22,6 +22,7 @@ class ShoesController < ApplicationController
       redirect to '/login'
     else
       @shoe = Shoe.find_by_id(params[:id])
+      @poster = User.find_by_id(@shoe.user_id)
       erb :'/shoes/show_shoe'
     end
   end
