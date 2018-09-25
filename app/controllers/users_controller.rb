@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  register Sinatra::ActiveRecordExtension
+  
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
@@ -15,7 +16,8 @@ class UsersController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
-      redirect to '/failure'
+      session[:message] = "Sign up failed, try again."
+      redirect to '/signup'
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
@@ -38,7 +40,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/shoes'
     else
-      redirect to '/failure'
+      session[:message] = "Login failed, try again."
+      redirect to '/login'
     end
   end
 
