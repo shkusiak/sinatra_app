@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   register Sinatra::ActiveRecordExtension
-  
+
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
@@ -18,6 +18,16 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:password] == "" || params[:email] == ""
       session[:message] = "Sign up failed, try again."
       redirect to '/signup'
+
+    elsif User.find_by(username: params[:username])
+      session[:message] = "username already exists, please login or try again."
+      redirect to '/signup'
+    # elsif params[:username] == User.find_by(username: params[:username]).username
+    #   session[:message] = "Username already exists, login or try again."
+    #   redirect to '/signup'
+    # elsif params[:email] == User.find_by(email: params[:email]).email
+    #   session[:message] = "Email already exists, login or try again."
+    #   redirect to '/signup'
     else
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       @user.save
