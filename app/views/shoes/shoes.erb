@@ -1,5 +1,5 @@
 
-<a href="/shoes/new">Add a shoe to the Collection</a>
+<a href="/shoes/new">Add a shoe to the Collection</a><br>
 
 <% @shoes.each do |shoe| %>
   <% poster = User.find_by_id(shoe.user_id) %>
@@ -8,7 +8,5 @@
     Posted by: <a href="/users/<%=poster.slug%>"><%=poster.username%></a>
   </p>
 <% end %>
-
-<a href="/shoes">All shoes</a><br>
-
+<br>
 <a href="/logout">Logout</a>
