@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if session[:user_id]
+    if logged_in? &&session[:user_id]
       redirect to '/shoes'
     else
       erb :'/users/login'
